@@ -22,27 +22,23 @@ const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({
   itemId,
 }) => {
   return (
-    <Modal isOpen={isOpen} onOpenChange={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose}>  {/* Usamos onClose directamente */}
       <ModalContent>
-        {() => (
-          <>
-            <ModalHeader>Confirmar Eliminación</ModalHeader>
-            <ModalBody>
-              <p>
-                ¿Estás seguro de que deseas eliminar el elemento con ID{" "}
-                <strong>{itemId}</strong>?
-              </p>
-            </ModalBody>
-            <ModalFooter>
-              <Button color="primary" variant="light" onPress={onClose}>
-                Volver
-              </Button>
-              <Button color="danger" onPress={onConfirm}>
-                Confirmar
-              </Button>
-            </ModalFooter>
-          </>
-        )}
+        <ModalHeader>Confirmar Eliminación</ModalHeader>
+        <ModalBody>
+          <p>
+            ¿Estás seguro de que deseas eliminar el elemento con ID{" "}
+            <strong>{itemId}</strong>?
+          </p>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" variant="light" onPress={onClose}>
+            Volver
+          </Button>
+          <Button color="danger" onPress={onConfirm}>
+            Confirmar
+          </Button>
+        </ModalFooter>
       </ModalContent>
     </Modal>
   );

@@ -4,9 +4,7 @@ import useRegisterHotel from "../hooks/useRegisterHotel";
 import { HotelData } from "../types/HotelData";
 import { useNavigate } from "react-router-dom";
 
-
 const HotelRegister: React.FC = () => {
-
     const navigate = useNavigate();
 
     const [hotel, setHotel] = useState<HotelData>({
@@ -17,6 +15,7 @@ const HotelRegister: React.FC = () => {
         numero_habitaciones: 0,
         imagen: "",
     });
+
     const { registerHotel, loading, error } = useRegisterHotel();
     const [formErrors, setFormErrors] = useState({
         nombre: "",
@@ -27,7 +26,6 @@ const HotelRegister: React.FC = () => {
     });
 
     const fileInputRef = useRef<HTMLInputElement | null>(null);
- 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setHotel({
@@ -121,12 +119,12 @@ const HotelRegister: React.FC = () => {
     };
 
     return (
-        <div className="container mx-auto p-6 max-w-4xl">
-            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="container scale-75 2xl:scale-100 mx-auto p-3 2xl:p-6 max-w-4xl">
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2  gap-6">
                 <div className="space-y-4">
                     <div>
                         <Input
-                            size="lg"
+                            size="md"
                             label="Nombre"
                             fullWidth
                             name="nombre"
@@ -140,7 +138,7 @@ const HotelRegister: React.FC = () => {
 
                     <div>
                         <Input
-                            size="lg"
+                            size="md"
                             label="Dirección"
                             fullWidth
                             name="direccion"
@@ -154,7 +152,7 @@ const HotelRegister: React.FC = () => {
 
                     <div>
                         <Input
-                            size="lg"
+                            size="md"
                             label="Ciudad"
                             fullWidth
                             name="ciudad"
@@ -168,7 +166,7 @@ const HotelRegister: React.FC = () => {
 
                     <div>
                         <Input
-                            size="lg"
+                            size="md"
                             label="Código Único"
                             fullWidth
                             name="nit"
@@ -182,7 +180,7 @@ const HotelRegister: React.FC = () => {
 
                     <div>
                         <Input
-                            size="lg"
+                            size="md"
                             label="Cantidad max 42"
                             fullWidth
                             name="numero_habitaciones"
@@ -199,7 +197,7 @@ const HotelRegister: React.FC = () => {
                 <div className="space-y-4">
                     <div>
                         <Input
-                            size="lg"
+                            size="md"
                             type="file"
                             name="imagen"
                             onChange={handleFileChange}

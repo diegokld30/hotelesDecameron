@@ -8,5 +8,8 @@ export interface Hotel {
     created_at: string;
     updated_at: string;
     imagen: string
+    imagents?: string;
+    imagenes: string[];
+    
   }
   

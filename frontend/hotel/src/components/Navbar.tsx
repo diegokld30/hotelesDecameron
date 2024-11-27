@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
           </Link>
 
           <Link to="/registrar-hotel">
-          <li className="hover:text-blue-600">Hoteles</li>
+          <li className="hover:text-blue-600">Crear Hoteles</li>
           </Link>
 
           <Link to="/gestion-habitaciones">

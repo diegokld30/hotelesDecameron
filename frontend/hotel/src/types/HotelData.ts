@@ -5,5 +5,6 @@ export interface HotelData {
     nit: string;
     numero_habitaciones: number;
     imagen: string;
+    
   }
   
