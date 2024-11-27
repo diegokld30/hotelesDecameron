@@ -92,4 +92,12 @@ npm run dev
 
 El frontend estará disponible en el puerto indicado por el terminal (por defecto, http://127.0.0.1:5173).
 
+<hr>
+
+# Publicado 
+
+El sistema lo encuentran publicado en: <br>
+# http://138.117.85.186:5050
+
+
 
