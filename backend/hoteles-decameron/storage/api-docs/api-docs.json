@@ -1,0 +1,409 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Documentación de API de Gestión Hotelera",
+        "description": "API para gestionar hoteles y habitaciones",
+        "contact": {
+            "email": "diegokld23@gmail.com.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/habitaciones": {
+            "get": {
+                "tags": [
+                    "Habitaciones"
+                ],
+                "summary": "Obtener todas las habitaciones",
+                "description": "Retorna una lista de todas las habitaciones registradas",
+                "operationId": "getHabitaciones",
+                "responses": {
+                    "200": {
+                        "description": "Lista de habitaciones obtenida con éxito"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Habitaciones"
+                ],
+                "summary": "Crear una nueva habitación",
+                "description": "Crea una nueva habitación asociada a un hotel",
+                "operationId": "createHabitacion",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "hotel_id",
+                                    "tipo",
+                                    "acomodacion",
+                                    "cantidad"
+                                ],
+                                "properties": {
+                                    "hotel_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "tipo": {
+                                        "type": "string",
+                                        "enum": [
+                                            "ESTANDAR",
+                                            "JUNIOR",
+                                            "SUITE"
+                                        ],
+                                        "example": "ESTANDAR"
+                                    },
+                                    "acomodacion": {
+                                        "type": "string",
+                                        "enum": [
+                                            "SENCILLA",
+                                            "DOBLE",
+                                            "TRIPLE",
+                                            "CUADRUPLE"
+                                        ],
+                                        "example": "DOBLE"
+                                    },
+                                    "cantidad": {
+                                        "type": "integer",
+                                        "example": 5
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Habitación creada con éxito"
+                    },
+                    "400": {
+                        "description": "Datos inválidos"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            }
+        },
+        "/api/habitaciones/{id}": {
+            "get": {
+                "tags": [
+                    "Habitaciones"
+                ],
+                "summary": "Obtener una habitación específica",
+                "description": "Retorna los detalles de una habitación basada en su ID",
+                "operationId": "getHabitacionById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la habitación",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalles de la habitación obtenidos con éxito"
+                    },
+                    "404": {
+                        "description": "Habitación no encontrada"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Habitaciones"
+                ],
+                "summary": "Actualizar una habitación existente",
+                "description": "Actualiza los detalles de una habitación",
+                "operationId": "updateHabitacion",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la habitación",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "tipo": {
+                                        "type": "string",
+                                        "enum": [
+                                            "ESTANDAR",
+                                            "JUNIOR",
+                                            "SUITE"
+                                        ]
+                                    },
+                                    "acomodacion": {
+                                        "type": "string",
+                                        "enum": [
+                                            "SENCILLA",
+                                            "DOBLE",
+                                            "TRIPLE",
+                                            "CUADRUPLE"
+                                        ]
+                                    },
+                                    "cantidad": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Habitación actualizada con éxito"
+                    },
+                    "400": {
+                        "description": "Datos inválidos"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Habitaciones"
+                ],
+                "summary": "Eliminar una habitación",
+                "description": "Elimina una habitación basada en su ID",
+                "operationId": "deleteHabitacion",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la habitación",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Habitación eliminada con éxito"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            }
+        },
+        "/api/hoteles": {
+            "get": {
+                "tags": [
+                    "Hoteles"
+                ],
+                "summary": "Obtener la lista de hoteles",
+                "description": "Retorna una lista con todos los hoteles registrados",
+                "operationId": "getHoteles",
+                "responses": {
+                    "200": {
+                        "description": "Lista obtenida con éxito"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Hoteles"
+                ],
+                "summary": "Crear un nuevo hotel",
+                "description": "Crea un nuevo hotel con los datos proporcionados",
+                "operationId": "createHotel",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "nit",
+                                    "numero_habitaciones",
+                                    "direccion",
+                                    "ciudad"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Hotel Decameron"
+                                    },
+                                    "nit": {
+                                        "type": "string",
+                                        "example": "123456789"
+                                    },
+                                    "numero_habitaciones": {
+                                        "type": "integer",
+                                        "example": 100
+                                    },
+                                    "direccion": {
+                                        "type": "string",
+                                        "example": "Calle 123, Ciudad"
+                                    },
+                                    "ciudad": {
+                                        "type": "string",
+                                        "example": "Ciudad Ejemplo"
+                                    },
+                                    "imagen": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Hotel creado exitosamente"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            }
+        },
+        "/api/hoteles/{id}": {
+            "get": {
+                "tags": [
+                    "Hoteles"
+                ],
+                "summary": "Obtener un hotel específico",
+                "description": "Retorna los detalles de un hotel basado en su ID",
+                "operationId": "getHotelById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del hotel",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalles del hotel obtenidos con éxito"
+                    },
+                    "404": {
+                        "description": "Hotel no encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Hoteles"
+                ],
+                "summary": "Actualizar un hotel",
+                "description": "Actualiza los datos de un hotel existente",
+                "operationId": "updateHotel",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del hotel",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string"
+                                    },
+                                    "nit": {
+                                        "type": "string"
+                                    },
+                                    "imagen": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Hotel actualizado exitosamente"
+                    },
+                    "500": {
+                        "description": "Error al actualizar el hotel"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Hoteles"
+                ],
+                "summary": "Eliminar un hotel",
+                "description": "Elimina un hotel existente",
+                "operationId": "deleteHotel",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del hotel",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Hotel eliminado con éxito"
+                    },
+                    "500": {
+                        "description": "Error al eliminar el hotel"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Habitaciones",
+            "description": "Habitaciones"
+        },
+        {
+            "name": "Hoteles",
+            "description": "Hoteles"
+        }
+    ]
+}
