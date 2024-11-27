@@ -40,6 +40,7 @@ cd hotelesDecameron
 
 
 <hr>
+
 # Paso 3: Configurar y ejecutar el backend
 
 - Ve al directorio del backend:
