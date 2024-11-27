@@ -9,7 +9,7 @@ Antes de comenzar, asegúrate de tener instalados los siguientes programas en tu
 
 * PHP 8.2 o superior con las extensiones necesarias para Laravel.
 * Composer para gestionar las dependencias de PHP.
-* Node.js 18 o superior y npm.
+* Node 20.x
 * PostgreSQL como base de datos.
 * Git para clonar el repositorio.
 
