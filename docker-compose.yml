@@ -1,0 +1,57 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: ./backend/hoteles-decameron
+      dockerfile: Dockerfile
+    container_name: hoteles-decameron-backend
+    ports:
+      - "8000:8000" # Laravel se expone en el puerto 8000
+    environment:
+      - APP_ENV=production
+      - APP_KEY=base64:your_app_key_here
+      - APP_DEBUG=false
+      - APP_URL=http://localhost
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=hoteles
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+    depends_on:
+      - db
+    volumes:
+      - ./backend/hoteles-decameron:/var/www/html
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend/hoteles-decameron
+      dockerfile: Dockerfile
+    container_name: hoteles-decameron-frontend
+    ports:
+      - "3000:3000" # Puerto del servidor Vite
+    environment:
+      - NODE_ENV=production
+    networks:
+      - app-network
+
+  db:
+    image: mysql:8.0
+    container_name: hoteles-decameron-db
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=hoteles
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app-network
+
+volumes:
+  db_data:
+
+networks:
+  app-network:
+
