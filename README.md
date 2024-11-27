@@ -53,13 +53,19 @@ php artisan key:generate
 
 -Configura el archivo .env en el directorio del backend:
 
-Asegúrate de que los parámetros de conexión a la base de datos sean correctos:
+Asegúrate de que los parámetros de conexión a la base de datos sean correctos:<br>
+<br>
 DB_CONNECTION=pgsql
-DB_HOST=127.0.0.1
-DB_PORT=5432
-DB_DATABASE=hoteles
-DB_USERNAME=postgres
-DB_PASSWORD=postgres
+
+DB_HOST=127.0.0.1<br>
+
+DB_PORT=5432<br>
+
+DB_DATABASE=hoteles<br>
+
+DB_USERNAME=postgres<br>
+
+DB_PASSWORD=postgres<br>
 
 -Ejecuta las migraciones para crear las tablas en la base de datos:
 php artisan migrate
